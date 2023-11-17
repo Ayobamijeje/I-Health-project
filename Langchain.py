@@ -89,31 +89,7 @@ chain2=LLMChain(llm=llm,prompt=language_prompt, memory = memory)
 me = chain2(input_info)
 st.write(me)
 
-#if input_info != '': 
-#	with st.expander('Patient History'):
-#		print(chain2.memory.buffer)
-#else :
-#	st.write('Patient History Please')
 
-#def clearhist():
-#	st.write(memory.clear())
-
-#st.button('Clear History', on_click = clearhist)
-
-#if input_info:
-#	response = llm(input_info)
-#	st.write(response)
-
-
-
-
-
-
-
-
-
-#with final: 
-	#st.write(History + ' ' + Examination + ' ' + Vitals + ' ' + Test + ' ' + prediction)
 
 
 
