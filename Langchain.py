@@ -54,8 +54,6 @@ with imgbody:
 		named = 'Chest xray ' + name
 		st.write(predict)
 
-	else : 
-		named = ''
 
 			
 
