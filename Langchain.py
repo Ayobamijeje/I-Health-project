@@ -6,6 +6,9 @@ from base import classifier
 from keys import mykey
 from tensorflow.keras.models import load_model
 from langchain.llms import OpenAI
+from langchain.chains import LLMChain
+from langchain.memory import ConversationBufferMemory
+from langchain.prompts import PromptTemplate
 import os
 
 
@@ -45,11 +48,7 @@ with imgbody:
 		st.image(image)
 
 		model = load_model('C:/Users/Home/OneDrive/Desktop/savedmode/chestxray.h5')
-
-
-
 		predict = classifier(image, model)
-
 		name = ' is Normal' if predict < 0.5 else 'Showed Pneumonia'
 		named = 'Chest xray ' + name
 		st.write(predict)
@@ -65,21 +64,14 @@ input_info = str(History + ' ' + Examination + ' ' + Vitals + ' ' + Test + ' ' +
 print(type(input_info))
 
 
-
 llm = OpenAI(temperature=0)
-
-
-from langchain.prompts import PromptTemplate
-
 
 language_prompt = PromptTemplate(
     input_variables= ['input_info'],
     template=" I am a doctor in accident and emergency and a patient comes with {input_info}"
 )
-#language_prompt.format(History=History,Examination=Examination)
 
-from langchain.chains import LLMChain
-from langchain.memory import ConversationBufferMemory
+
 memory = ConversationBufferMemory(input_key = 'input_info')
 
 chain2=LLMChain(llm=llm,prompt=language_prompt, memory = memory)
