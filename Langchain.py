@@ -12,7 +12,6 @@ from langchain.prompts import PromptTemplate
 import os
 
 
-os.environ['OPENAI_API_KEY'] = mykey
 
 header = st.container()
 history = st.container()
